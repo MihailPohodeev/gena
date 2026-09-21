@@ -14,6 +14,7 @@ qt_add_qml_module(gena-qml
     QML_FILES
         "Main.qml"
         "MessageBox.qml"
+        "CPackSettingsWindow.qml"
         "LabeledComboBox.qml"
         "LabeledTextField.qml"
 )

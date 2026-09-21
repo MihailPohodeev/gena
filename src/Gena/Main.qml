@@ -11,8 +11,8 @@ ApplicationWindow
     visible: true
     minimumWidth: 340
     maximumWidth: 340
-    minimumHeight: 535
-    maximumHeight: 535
+    minimumHeight: 620
+    maximumHeight: 620
 
 
     ColumnLayout
@@ -89,14 +89,52 @@ ApplicationWindow
             }
         }
 
-        CheckBox {
-            id: checkBoxSetupGit
-            text: "setup git repository"
-            checked: true
+        CPackSettingsWindow {
+            id: cpackSettings
+        }
 
-            ToolTip.delay: 500
-            ToolTip.visible: checkBoxSetupGit.hovered
-            ToolTip.text: "Creates a repository and makes an initial commit using your identity. Requires Git to be installed"
+        GroupBox{
+            title: "development tools"
+            Layout.fillWidth: true
+            ColumnLayout {
+                    spacing: -10
+                    Layout.fillWidth: true
+                CheckBox {
+                    id: checkBoxSetupGit
+                    text: "setup git repository"
+                    checked: true
+
+                    ToolTip.delay: 500
+                    ToolTip.visible: checkBoxSetupGit.hovered
+                    ToolTip.text: "Creates a repository and makes an initial commit using your identity. Requires Git to be installed"
+                }
+
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: 8
+                    CheckBox {
+                        id: checkBoxSetupCPack
+                        text: "add CPack settings"
+                        checked: true
+
+                        ToolTip.delay: 500
+                        ToolTip.visible: checkBoxSetupCPack.hovered
+                        ToolTip.text: "Setup CPack settings"
+                    }
+                    Item { Layout.fillWidth: true }
+                    Button {
+                        id: buttonConfigureCPack
+                        text: "Setup CPack..."
+                        enabled: checkBoxSetupCPack.checked
+                        HoverHandler {
+                            cursorShape: Qt.PointingHandCursor
+                        }
+                        onClicked: {
+                            cpackSettings.show()
+                        }
+                    }
+                }
+            }
         }
 
         Item { Layout.fillHeight: true }
